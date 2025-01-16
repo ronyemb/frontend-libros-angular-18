@@ -1,0 +1,64 @@
+// Estilo específico para NewPageComponent
+.new-page-container {
+  max-width: 600px;
+  margin: 2rem auto;
+
+  // Estilos para la tarjeta (p-card) adaptados al componente
+  ::ng-deep .p-card {
+    background: var(--surface-card);
+    padding: 2rem;
+
+    .p-card-title {
+      color: var(--text-color);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+
+    .p-card-content {
+      color: var(--text-color-card);
+    }
+  }
+}
+
+// Estilo para el formulario dentro de la tarjeta
+.form-card {
+  padding: 2rem;
+}
+
+// Estilo para los grupos de formularios
+.form-group {
+  margin-bottom: 1.5rem;
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+  }
+
+  input,
+  p-inputNumber {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid var(--surface-border);
+    border-radius: 4px;
+  }
+
+  small.p-error {
+    color: var(--danger-color);
+    margin-top: 0.25rem;
+    display: block;
+  }
+}
+
+// Contenedor para los botones del formulario
+.button-container {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+
+  ::ng-deep .p-button {
+    padding: 0.75rem 1.5rem;
+  }
+}

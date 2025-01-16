@@ -1,0 +1,39 @@
+<p-card class="custom-card">
+  <ng-template #header>
+    <img
+      alt="Card"
+      class="w-full"
+      src="https://primefaces.org/cdn/primeng/images/card-ng.jpg"
+    />
+  </ng-template>
+  <ng-template #title>
+    <span class="p-card-title">{{ book.title }}</span>
+  </ng-template>
+  <ng-template #subtitle>
+    <span class="p-card-subtitle">{{ book.author }}</span>
+  </ng-template>
+  <p class="p-card-content">
+    {{ book.pages }}
+  </p>
+  <p class="p-card-content">
+    {{ book.price | currency : "PEN" : "symbol" : "1.2-2" : "es-PE" }}
+  </p>
+  <ng-template #footer>
+    <div class="flex gap-4 mt-1">
+      <p-button
+        label="Borrar"
+        severity="warn"
+        class="w-full"
+        styleClass="p-button-info w-full p-button-lg"
+        (onClick)="onDeleteBook()"
+      ></p-button>
+      <p-button
+        label="Editar"
+        class="w-full"
+        [routerLink]="['/edit', book.id]"
+        routerLinkActive="router-link-active"
+        styleClass="p-button-primary font-bold primary w-full p-button-lg"
+      ></p-button>
+    </div>
+  </ng-template>
+</p-card>

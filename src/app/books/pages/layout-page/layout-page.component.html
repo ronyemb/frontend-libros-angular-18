@@ -1,0 +1,46 @@
+<div class="layout-wrapper">
+  <aside class="layout-sidebar">
+    <div class="sidebar-header">
+      <h1>Sistema de Libros</h1>
+    </div>
+    <nav class="sidebar-nav">
+      <ul>
+        <li>
+          <a [routerLink]="['/list']" routerLinkActive="active">
+            <i class="pi pi-home"></i>
+            <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/new-book']" routerLinkActive="active">
+            <i class="pi pi-file"></i>
+            <span>Registrar Libro</span>
+          </a>
+        </li>
+        <!--
+        <li>
+          <a [routerLink]="['/punto-venta']" routerLinkActive="active">
+            <i class="pi pi-shopping-cart"></i>
+            <span>Punto de Venta</span>
+          </a>
+        </li>
+        <li>
+          <a [routerLink]="['/productos']" routerLinkActive="active">
+            <i class="pi pi-box"></i>
+            <span>Productos</span>
+          </a>
+        </li> -->
+        <!-- <li class="sidebar-footer">
+          <a (click)="logout()" class="logout-link">
+            <i class="pi pi-sign-out"></i>
+            <span>Cerrar Sesión</span>
+          </a>
+        </li> -->
+      </ul>
+    </nav>
+  </aside>
+  <main class="layout-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+

@@ -1,0 +1,95 @@
+<div class="new-page-container">
+  <p-card
+    [header]="formBook.get('id')?.value ? 'Edit Book Details' : 'Create New Book'"
+    styleClass=".form-card"
+  >
+    <form [formGroup]="formBook" (ngSubmit)="onSubmit()">
+      <!-- Title -->
+      <div class="p-fluid form-group">
+        <label for="title">Title</label>
+        <input
+          id="title"
+          pInputText
+          formControlName="title"
+          placeholder="Enter book title"
+        />
+        @if (formBook.get('title')?.invalid && formBook.get('title')?.touched) {
+          <small class="p-error">
+            Title is required.
+          </small>
+        }
+      </div>
+
+      <!-- Author -->
+      <div class="p-fluid form-group">
+        <label for="author">Author</label>
+        <input
+          id="author"
+          pInputText
+          formControlName="author"
+          placeholder="Enter author name"
+        />
+        @if (formBook.get('author')?.invalid && formBook.get('author')?.touched) {
+          <small class="p-error">
+            Author is required.
+          </small>
+        }
+      </div>
+
+      <!-- Pages -->
+      <div class="p-fluid form-group">
+        <label for="pages">Pages</label>
+        <p-inputNumber
+          id="pages"
+          formControlName="pages"
+          placeholder="Enter number of pages"
+          [min]="1"
+          [showButtons]="true"
+        ></p-inputNumber>
+        @if (formBook.get('pages')?.invalid && formBook.get('pages')?.touched) {
+          <small class="p-error">
+            Pages must be at least 1.
+          </small>
+        }
+      </div>
+
+      <!-- Price -->
+      <div class="p-fluid form-group">
+        <label for="price">Price</label>
+        <p-inputNumber
+          id="price"
+          formControlName="price"
+          placeholder="Enter book price"
+          [min]="0"
+          [mode]="'currency'"
+          currency="PEN"
+          [showButtons]="true"
+        ></p-inputNumber>
+        @if (formBook.get('price')?.invalid && formBook.get('price')?.touched) {
+          <small class="p-error">
+            Price must be at least 0.
+          </small>
+        }
+      </div>
+
+      <!-- Buttons -->
+      <div class="button-container">
+        <p-button
+          type="submit"
+          label="{{ formBook.get('id')?.value ? 'Update Book' : 'Create Book' }}"
+          [loading]="isSaveInProgress()"
+          [disabled]="formBook.invalid || isSaveInProgress()"
+          styleClass="p-button-primary"
+        ></p-button>
+        <p-button
+          type="button"
+          label="Cancel"
+          (click)="router.navigate(['/'])"
+          styleClass="p-button-secondary"
+        ></p-button>
+      </div>
+    </form>
+  </p-card>
+
+  <p-toast></p-toast>
+</div>

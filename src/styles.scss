@@ -1,0 +1,570 @@
+// @import "primeng/resources/themes/lara-dark-blue/theme.css";
+// @import "primeng/resources/primeng.min.css";
+// @import "primeicons/primeicons.css";
+
+// Variables globales - Tema Oscuro
+// :root[data-theme="dark"] {
+:root {
+  // Colores principales
+  --primary-color: #EC4DBC;
+  // --primary-color: #EC4DBC
+  --primary-dark: #7342C4;
+  --primary-light: #B090E7;
+
+  // Estados
+  --success-color: #0BD18A;
+  --info-color: #4EA5DC;
+  --warning-color: #F5B041;
+  --danger-color: #FC6161;
+  --help-color: #A855F7;
+
+  // Colores de fondo
+  // --surface-ground: #1A1F33;
+  --surface-ground: linear-gradient(180deg, #2E323F 0%, #0A061A 100%);
+  --surface-section: #1C2340;
+  // --surface-card: #1E2745;
+  // --surface-card: #2E323F;
+  --surface-card: rgba(255, 255, 255, 0.05);
+  --surface-overlay: #232B48;
+  --surface-border: #2F3B5C;
+  --surface-hover: rgba(255,255,255,.03);
+
+  // Colores de texto
+  --text-color: #CBD5E1;
+  --text-color-secondary: #94A3B8;
+  --primary-text-color: #FFFFFF;
+  --text-color-card: #1C2340;
+
+  // Sombras y efectos
+  --card-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+  --focus-ring: 0 0 0 2px #2F3B5C;
+}
+
+// Variables globales - Tema Claro
+// :root[data-theme="light"] {
+//   // Colores principales
+//   --primary-color: #986CDF;
+//   --primary-dark: #7342C4;
+//   --primary-light: #B090E7;
+
+//   // Estados
+//   --success-color: #0BD18A;
+//   --info-color: #4EA5DC;
+//   --warning-color: #F5B041;
+//   --danger-color: #FC6161;
+//   --help-color: #A855F7;
+
+//   // Colores de fondo
+//   --surface-ground: #F8F9FA;
+//   --surface-section: #FFFFFF;
+//   --surface-card: #FFFFFF;
+//   --surface-overlay: #FFFFFF;
+//   --surface-border: #DEE2E6;
+//   --surface-hover: rgba(0,0,0,.03);
+
+//   // Colores de texto
+//   --text-color: #495057;
+//   --text-color-secondary: #6C757D;
+//   --primary-text-color: #FFFFFF;
+
+//   // Sombras y efectos
+//   --card-shadow: 0 2px 1px -1px rgba(0,0,0,.1), 0 1px 1px 0 rgba(0,0,0,.07), 0 1px 3px 0 rgba(0,0,0,.06);
+//   --focus-ring: 0 0 0 2px rgba(152,108,223,.2);
+// }
+
+// Estilos globales
+body {
+  background-color: var(--surface-ground);
+  color: var(--text-color);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+// Estilos globales para textos
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+p {
+  color: var(--text-color);
+}
+
+// Estilos para tablas
+.p-datatable {
+  background: var(--surface-card);
+  border-radius: 1rem;
+  overflow: hidden;
+
+  .p-datatable-header {
+    background: var(--surface-card);
+    border: none;
+    padding: 1.5rem;
+    color: var(--text-color);
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
+  .p-datatable-thead > tr > th {
+    background: var(--surface-card);
+    border-color: var(--surface-border);
+    color: var(--text-color);
+    padding: 1rem;
+    font-weight: 600;
+  }
+
+  .p-datatable-tbody > tr {
+    background: var(--surface-card);
+    color: var(--text-color);
+
+    &:hover {
+      background: var(--surface-hover);
+    }
+
+    > td {
+      border-color: var(--surface-border);
+      color: var(--text-color);
+      padding: 1rem;
+    }
+  }
+
+  .p-paginator {
+    background: var(--surface-card);
+    color: var(--text-color);
+    border-color: var(--surface-border);
+
+    .p-paginator-current {
+      color: var(--text-color-secondary);
+    }
+
+    .p-paginator-pages .p-paginator-page {
+      color: var(--text-color);
+
+      &.p-highlight {
+        background: var(--primary-color);
+        color: var(--primary-text-color);
+      }
+    }
+  }
+}
+
+// Estilos para formularios
+.p-card {
+  background: var(--surface-card);
+  // color: var(--text-color);
+
+  .p-card-title {
+    color: var(--text-color-card);
+  }
+
+  .p-card-subtitle {
+    color: var(--text-color-card);
+  }
+  .p-card-content {
+    color: var(--text-color-card);
+  }
+}
+
+.p-inputtext {
+  background: var(--surface-overlay);
+  border-color: var(--surface-border);
+  color: var(--text-color);
+
+  &::placeholder {
+    color: var(--text-color-secondary);
+  }
+}
+
+.p-dropdown {
+  background: var(--surface-overlay);
+  border-color: var(--surface-border);
+  color: var(--text-color);
+
+  .p-dropdown-label {
+    color: var(--text-color);
+  }
+
+  .p-dropdown-trigger {
+    color: var(--text-color-secondary);
+  }
+}
+
+// Estilos para diálogos y modales
+.p-dialog {
+  .p-dialog-header {
+    background: var(--surface-card);
+    color: var(--text-color);
+  }
+
+  .p-dialog-content {
+    background: var(--surface-card);
+    color: var(--text-color);
+  }
+}
+
+// Estilos para menús
+.p-menu {
+  background: var(--surface-card);
+  border-color: var(--surface-border);
+
+  .p-menuitem-link {
+    color: var(--text-color);
+
+    &:hover {
+      background: var(--surface-hover);
+    }
+
+    .p-menuitem-text {
+      color: var(--text-color);
+    }
+
+    .p-menuitem-icon {
+      color: var(--text-color-secondary);
+    }
+  }
+}
+
+// Estilos para botones
+.p-button {
+  &.p-button-text {
+    color: var(--primary-color);
+  }
+}
+
+// Estilos para inputs con iconos
+.p-input-icon-left, .p-input-icon-right {
+  i {
+    color: var(--text-color-secondary);
+  }
+}
+
+// Estilos para labels
+label {
+  color: var(--text-color);
+  font-weight: 500;
+}
+
+// Personalización de componentes PrimeNG
+.p-component {
+  font-family: inherit;
+}
+
+// Estilos de botones
+.p-button {
+  &.p-button-primary {
+    background: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--primary-text-color);
+  }
+
+  &.p-button-success {
+    background: var(--success-color);
+    border-color: var(--success-color);
+    color: #FFFFFF;
+    border: 1px solid transparent;
+  }
+
+  &.p-button-info {
+    background: var(--info-color);
+    border-color: var(--info-color);
+  }
+
+  &.p-button-warning {
+    background: var(--warning-color);
+    border-color: var(--warning-color);
+  }
+
+  &.p-button-help {
+    background: var(--help-color);
+    border-color: var(--help-color);
+  }
+
+  &.p-button-danger {
+    background: var(--danger-color);
+    border-color: var(--danger-color);
+    color: #FFFFFF;
+    border: 1px solid transparent;
+  }
+
+  &.p-button-rounded {
+    border-radius: 2rem;
+  }
+
+  &.p-button-outlined {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid;
+
+    &:enabled:hover {
+      background: rgba(152, 108, 223, 0.04);
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+  }
+
+  &.p-button-text {
+    background-color: transparent;
+    color: var(--primary-color);
+    border-color: transparent;
+
+    &:enabled:hover {
+      background: rgba(152, 108, 223, 0.04);
+      color: var(--primary-color);
+      border-color: transparent;
+    }
+  }
+
+  &:focus {
+    box-shadow: var(--focus-ring);
+  }
+}
+
+// Estilos de inputs
+.p-inputtext {
+  background: var(--surface-overlay);
+  border-color: var(--surface-border);
+  color: var(--text-color);
+
+  &:enabled:hover {
+    border-color: var(--primary-color);
+  }
+
+  &:enabled:focus {
+    box-shadow: var(--focus-ring);
+    border-color: var(--primary-color);
+  }
+}
+
+// Estilos de tarjetas
+.p-card {
+  background: var(--surface-card);
+  border-radius: 1rem;
+  // padding: 0.5rem;
+  box-shadow: var(--card-shadow);
+  // color: var(--text-color-card);
+}
+
+// Animaciones
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+// Estilos de menú
+.p-menu {
+  background: var(--surface-overlay);
+  border: 1px solid var(--surface-border);
+  padding: 0.5rem;
+
+  .p-menuitem-link {
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    border-radius: 0.5rem;
+
+    &:hover {
+      background: var(--surface-hover);
+    }
+
+    .p-menuitem-icon {
+      color: var(--text-color-secondary);
+    }
+  }
+}
+
+// Estilos de la tabla CRUD
+.p-datatable {
+  background: var(--surface-card);
+  border-radius: 1rem;
+  overflow: hidden;
+
+  .p-datatable-header {
+    background: var(--surface-card);
+    border: none;
+    padding: 1.5rem;
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .left-content {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .right-content {
+        display: flex;
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  .p-datatable-thead > tr > th {
+    background: var(--surface-card);
+    border-color: var(--surface-border);
+    color: var(--text-color);
+    padding: 1rem;
+    font-weight: 600;
+  }
+
+  .p-datatable-tbody > tr {
+    background: var(--surface-card);
+
+    &:hover {
+      background: var(--surface-hover);
+    }
+
+    > td {
+      border-color: var(--surface-border);
+      padding: 1rem;
+
+      .p-rating {
+        .p-rating-icon {
+          color: var(--warning-color);
+          &.p-rating-icon-active {
+            color: var(--warning-color);
+          }
+        }
+      }
+
+      .status-badge {
+        border-radius: 2rem;
+        padding: 0.25rem 0.75rem;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+        font-weight: 600;
+
+        &.instock {
+          background: rgba(11, 209, 138, 0.1);
+          color: var(--success-color);
+        }
+
+        &.lowstock {
+          background: rgba(245, 176, 65, 0.1);
+          color: var(--warning-color);
+        }
+
+        &.outofstock {
+          background: rgba(252, 97, 97, 0.1);
+          color: var(--danger-color);
+        }
+      }
+
+      .p-button {
+        padding: 0.5rem;
+        height: 2rem;
+        width: 2rem;
+
+        &.p-button-success {
+          background: rgba(11, 209, 138, 0.1);
+          color: var(--success-color);
+          border: none;
+
+          &:hover {
+            background: rgba(11, 209, 138, 0.2);
+          }
+        }
+
+        &.p-button-warning {
+          background: rgba(245, 176, 65, 0.1);
+          color: var(--warning-color);
+          border: none;
+
+          &:hover {
+            background: rgba(245, 176, 65, 0.2);
+          }
+        }
+      }
+    }
+  }
+}
+
+// Ocultar borde del router-outlet
+router-outlet {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
+// Botón de configuración del tema
+.theme-switcher {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+
+  .p-button {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--primary-color);
+    border: none;
+
+    &:hover {
+      background: var(--primary-dark);
+    }
+
+    .pi {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+// Panel de temas
+.theme-panel {
+  .p-sidebar {
+    background: var(--surface-overlay);
+    border-left: 1px solid var(--surface-border);
+
+    .p-sidebar-header {
+      padding: 1.5rem;
+      background: var(--surface-card);
+      border-bottom: 1px solid var(--surface-border);
+    }
+
+    .p-sidebar-content {
+      padding: 1.5rem;
+
+      .theme-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+
+        .theme-option {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          padding: 1rem;
+          border-radius: 0.5rem;
+          cursor: pointer;
+          transition: all 0.2s;
+
+          &:hover {
+            background: var(--surface-hover);
+          }
+
+          &.active {
+            background: var(--primary-color);
+            color: var(--primary-text-color);
+          }
+        }
+      }
+    }
+  }
+}

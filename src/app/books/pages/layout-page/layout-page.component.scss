@@ -1,0 +1,134 @@
+.layout-wrapper {
+  min-height: 100vh;
+  display: flex;
+  background: var(--surface-ground);
+}
+
+.layout-sidebar {
+  width: 280px;
+  background: var(--surface-ground);
+  border-right: 1px solid var(--surface-border);
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 999;
+  // background: url('/src/app/assets/images/effect-ondark.png') no-repeat center center;
+  background-size: cover;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  .sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--surface-border);
+
+    h1 {
+      margin: 0;
+      color: var(--text-color);
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 1rem 0;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    li {
+      &.sidebar-footer {
+        margin-top: auto;
+        border-top: 1px solid var(--surface-border);
+      }
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    font-weight: 500;
+
+    i {
+      font-size: 1.25rem;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-color-secondary);
+    }
+
+    &:hover {
+      background: var(--surface-hover);
+      color: var(--primary-color);
+
+      i {
+        color: var(--primary-color);
+      }
+    }
+
+    &.active {
+      background-color: rgba(255, 255, 255, .05);//var(--primary-color);
+      border-left: 8px solid transparent;
+      border-left-color: var(--primary-color);
+      border-radius: 8px;
+      transition: background-color var(--transition-duration), box-shadow var(--transition-duration);
+      color: var(--primary-text-color);
+
+      i {
+        color: var(--primary-text-color);
+      }
+    }
+  }
+}
+
+.layout-main {
+  flex: 1;
+  padding: 2rem;
+  margin-left: 280px;
+  width: calc(100% - 280px);
+  min-height: 100vh;
+  background: var(--surface-ground);
+
+  > :first-child {
+    background: var(--surface-card);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    min-height: calc(100vh - 4rem);
+    color: var(--text-color);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .layout-sidebar {
+    transform: translateX(-100%);
+
+    &.active {
+      transform: translateX(0);
+    }
+  }
+
+  .layout-main {
+    margin-left: 0;
+    width: 100%;
+  }
+}
