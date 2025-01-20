@@ -19,46 +19,89 @@
       color: var(--text-color-card);
     }
   }
-}
 
-// Estilo para el formulario dentro de la tarjeta
-.form-card {
-  padding: 2rem;
-}
-
-// Estilo para los grupos de formularios
-.form-group {
-  margin-bottom: 1.5rem;
-
-  label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 0.5rem;
-    color: var(--text-color);
+  // Estilo para el formulario dentro de la tarjeta
+  .form-card {
+    padding: 2rem;
   }
 
-  input,
-  p-inputNumber {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid var(--surface-border);
-    border-radius: 4px;
+  // Estilo para los grupos de formularios
+  .form-group {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    input,
+    p-inputNumber {
+      width: 100%;
+      padding: 0.5rem;
+      border: 1px solid var(--surface-border);
+      border-radius: 4px;
+    }
+
+    small.p-error {
+      color: var(--danger-color);
+      margin-top: 0.25rem;
+      display: block;
+    }
+
   }
 
-  small.p-error {
-    color: var(--danger-color);
-    margin-top: 0.25rem;
-    display: block;
+  // Contenedor para los botones del formulario
+  .button-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+
+    ::ng-deep .p-button {
+      padding: 0.75rem 1.5rem;
+    }
   }
-}
 
-// Contenedor para los botones del formulario
-.button-container {
-  display: flex;
-  gap: 1rem;
-  justify-content: flex-end;
 
-  ::ng-deep .p-button {
-    padding: 0.75rem 1.5rem;
+  .file-upload-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .file-upload-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+
+      ::ng-deep .p-fileupload {
+        width: 100%; /* Asegura que el botón tenga el ancho adecuado */
+      }
+
+      ::ng-deep .p-button {
+        padding: 0.75rem 1.5rem;
+        background-color: var(--secondary-color);
+        border-radius: 4px;
+        color: var(--text-color);
+        font-weight: 600;
+
+        &:hover {
+          background-color: var(--primary-color-hover);
+        }
+      }
+
+      .file-name {
+        font-size: 0.875rem;
+        color: var(--text-color-secondary);
+        word-break: break-word;
+      }
+    }
   }
 }

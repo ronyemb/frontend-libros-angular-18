@@ -11,7 +11,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-
+import { FileSelectEvent } from 'primeng/fileupload';
+import { FileUploadModule } from 'primeng/fileupload'
 
 @Component({
   selector: 'app-new-page',
@@ -25,6 +26,7 @@ import { CardModule } from 'primeng/card';
     InputNumberModule,
     ButtonModule,
     CardModule,
+    FileUploadModule,
   ],
   templateUrl: './new-page.component.html',
   styleUrl: './new-page.component.scss'
@@ -37,6 +39,9 @@ export class NewPageComponent implements OnInit {
   public router = inject(Router);
   private activeRouter = inject(ActivatedRoute);
   private messageService = inject(MessageService);
+  private selectedFile: File | null = null;
+  public selectedImageName: string = '';
+  public uploadedFileName: string | null = null;
 
 
   constructor(private fb: FormBuilder){
@@ -46,6 +51,7 @@ export class NewPageComponent implements OnInit {
       author: ['', Validators.required],
       pages: [1, [Validators.required, Validators.min(1)]],
       price: [0, [Validators.required, Validators.min(0)]],
+      image: [null]
     });
   }
 
@@ -67,14 +73,76 @@ export class NewPageComponent implements OnInit {
       });
   }
 
+  public onFileSelected(event: FileSelectEvent) {
+    this.selectedFile = event.files[0];
+
+  }
+
+  handleFileSelect(event: any): void {
+    const file = event.files[0];
+    if (file) {
+      this.uploadedFileName = file.name;
+    }
+    // Ejecutar la lógica previa según corresponda
+    this.formBook.get('id')?.value
+      ? this.changeImage(event)
+      : this.onFileSelected(event);
+  }
+  changeImage(event: FileSelectEvent) {
+    this.selectedFile = event.files[0];
+    if (!this.selectedFile) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Seleccione una imagen e intente nuevamente',
+      });
+      return;
+    }
+    this.isSaveInProgress.set(true);
+    this.bookService.updateBookImage(this.formBook.value.id, this.selectedFile).subscribe({
+      next: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Guardado',
+          detail: 'Libro actualizado correctamente',
+        });
+        this.isSaveInProgress.set(false);
+        this.router.navigateByUrl('/');
+      },
+      error: () => {
+        this.isSaveInProgress.set(false);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Revise el archivo seleccionado',
+        });
+      },
+    });
+  }
+
   public onSubmit(): void {
-    if ( this.formBook.invalid ) return;
+    if ( this.formBook.invalid ) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: `Check the fields and try again.`,
+      });
+      return;
+    };
+    if ( !this.selectedFile && !this.formBook.get('id')?.value ) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: `Select an Image.`,
+      });
+      return;
+    };
 
     const { id, ...book } = this.formBook.value;
 
     const saveObservable = id
     ? this.bookService.updateBook(id, book as Book)
-    : this.bookService.createBook(book as Book);
+    : this.bookService.createBook(book as Book, this.selectedFile!);
 
     saveObservable.subscribe({
       next: (response) => {
@@ -85,10 +153,10 @@ export class NewPageComponent implements OnInit {
             id ? 'updated' : 'created'
           }!`,
         });
-        if (!id) {
-          // this.router.navigate(['/edit', response.id]);
-          this.formBook.reset();
-        }
+        // if (!id) {
+          this.router.navigate(['/']);
+          // this.formBook.reset();
+        // }
       },
       error: () => {
         this.messageService.add({

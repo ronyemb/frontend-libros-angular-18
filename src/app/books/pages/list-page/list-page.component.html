@@ -1,12 +1,9 @@
 <div class="card-container">
   @for (book of books(); track book.id) {
-    <div class="custom-card">
-      <books-book-card
-      [book]="book"
-      (onDelete)="onBookDeleted($event)"
-      >
+  <div class="custom-card">
+    <books-book-card [book]="book" (onDelete)="onBookDeleted($event)">
     </books-book-card>
-    </div>
+  </div>
   } @empty {
   <p>No existen libros</p>
   }

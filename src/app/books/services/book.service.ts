@@ -4,13 +4,18 @@ import { Book } from '../interfaces/book.interface';
 import { HttpClientService } from '../../core/services/http-client.service';
 import { environment } from '../../environments/environment';
 
+// import { HttpClient } from '@angular/common/http';
+
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
   private apiURL: string = `${environment.apiUrl}`;
 
-  constructor(private httpClient: HttpClientService) {}
+  constructor(
+    private httpClient: HttpClientService,
+    // private http: HttpClient,
+  ) {}
 
   // Obtener todos los libros
   public getAllBooks(): Observable<Book[]> {
@@ -23,8 +28,12 @@ export class BookService {
   }
 
   // Crear un nuevo libro
-  public createBook(book: Book): Observable<Book> {
-    return this.httpClient.post<Book>(this.apiURL, book);
+  public createBook(book: Book, image:File): Observable<Book> {
+    const formData = new FormData()
+    formData.append('book', new Blob([JSON.stringify(book)], { type: 'application/json' }));
+    formData.append('file', image)
+    return this.httpClient.post<Book>(this.apiURL, formData);
+    // return this.http.post<Book>(this.apiURL, formData);
   }
 
   // Actualizar un libro existente

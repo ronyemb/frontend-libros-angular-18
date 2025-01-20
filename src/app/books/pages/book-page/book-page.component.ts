@@ -12,7 +12,7 @@ import { BookStateService } from '../../services/book-state.service';
   standalone: true,
   imports: [CurrencyPipe, CardModule, ButtonModule, RouterModule],
   templateUrl: './book-page.component.html',
-  styleUrl: './book-page.component.css',
+  styleUrl: './book-page.component.scss',
 })
 export class BookPageComponent implements OnInit {
   @Input() book!: Book;

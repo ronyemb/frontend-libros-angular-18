@@ -9,9 +9,10 @@
   padding: 1.5rem;
 }
 
+
 .custom-card {
   flex: 1 1 calc(33.33% - 20px); /* Las tarjetas ocupan un tercio del espacio disponible */
   box-sizing: border-box;
   margin-bottom: 20px;
-  max-width: calc(33.33% - 20px); /* Limita el ancho máximo para evitar que crezca más allá de su espacio */
+  max-width: calc(33.33% - 250px); /* Limita el ancho máximo para evitar que crezca más allá de su espacio */
 }
